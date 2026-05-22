@@ -342,6 +342,9 @@ const init = () => {
     renderCharacters(sorted, handleCardClick, handleFavToggle);
   });
 
+  // Reset filters
+  $('#reset-filters').addEventListener('click', resetFilters);
+
   // View mode toggle
   $('#view-grid').addEventListener('click', () => applyViewMode('grid'));
   $('#view-list').addEventListener('click', () => applyViewMode('list'));
