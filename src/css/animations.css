@@ -10,6 +10,15 @@
   animation: card-in 0.3s ease both;
 }
 
+.char-card__img {
+  animation: image-settle 0.5s ease both;
+}
+
+@keyframes image-settle {
+  from { filter: saturate(0.6) contrast(0.9); }
+  to   { filter: saturate(1.08) contrast(1.02); }
+}
+
 /* Skeleton shimmer */
 @keyframes shimmer {
   0%   { opacity: 0.4; }
