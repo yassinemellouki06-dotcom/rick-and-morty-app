@@ -6,6 +6,7 @@ import {
   saveTheme, getTheme,
   saveViewMode, getViewMode,
   saveCharacterControls, getCharacterControls,
+  getFavourites,
   clearFavourites,
 } from './storage.js';
 import {
@@ -84,6 +85,7 @@ const loadCharacters = async () => {
 
     // Update results count display
     updateResultsCount(data.results.length, data.info.count);
+    updateExplorerStats();
 
     // Observe cards that enter viewport (Observer API)
     $$('.char-card').forEach((card) => cardObserver.observe(card));
@@ -156,6 +158,7 @@ const handleCardClick = (character) => {
 
 const handleFavToggle = (character, nowFav) => {
   updateFavCount();
+  updateExplorerStats();
   // Ternary operator for toast message
   const msg = nowFav
     ? `♥ ${character.name} added to favourites`
@@ -307,6 +310,17 @@ const applySavedCharacterControls = () => {
   $('#sort-select').value = controls.sort;
 };
 
+const updateExplorerStats = () => {
+  const activeFilters = Object.values(state.characters.filters)
+    .filter((value) => value.trim() !== '')
+    .length;
+
+  $('#stat-total').textContent = state.characters.info?.count || '—';
+  $('#stat-favourites').textContent = getFavourites().length;
+  $('#stat-filters').textContent = activeFilters;
+  $('#stat-page').textContent = state.characters.page;
+};
+
 // ── RESET FILTERS ─────────────────────────────────────────
 
 export const resetFilters = () => {
@@ -330,6 +344,7 @@ const init = () => {
   applyViewMode(getViewMode());
   applySavedCharacterControls();
   updateFavCount();
+  updateExplorerStats();
 
   // Initial data load
   loadCharacters();
@@ -407,6 +422,7 @@ const init = () => {
       clearFavourites();
       renderFavourites(handleCardClick, handleFavToggle);
       updateFavCount();
+      updateExplorerStats();
       showToast('All favourites cleared.');
     }
   });
