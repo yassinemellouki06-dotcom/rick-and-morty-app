@@ -5,6 +5,7 @@ import { fetchCharacters, fetchEpisodes } from './api.js';
 import {
   saveTheme, getTheme,
   saveViewMode, getViewMode,
+  saveCharacterControls, getCharacterControls,
   clearFavourites,
 } from './storage.js';
 import {
@@ -175,6 +176,7 @@ const debounce = (fn, delay) => {
 const handleSearch = debounce((value) => {
   state.characters.filters.name = value;
   state.characters.page = 1;
+  syncCharacterControls();
   loadCharacters();
 }, 400);
 
@@ -250,15 +252,39 @@ const applyViewMode = (mode) => {
   saveViewMode(mode);
 };
 
+// ── SAVED CHARACTER CONTROLS ─────────────────────────────
+
+const syncCharacterControls = () => {
+  saveCharacterControls({
+    filters: state.characters.filters,
+    sort: state.characters.sort,
+  });
+};
+
+const applySavedCharacterControls = () => {
+  const controls = getCharacterControls();
+  state.characters.filters = controls.filters;
+  state.characters.sort = controls.sort;
+
+  $('#search-input').value = controls.filters.name;
+  $('#filter-status').value = controls.filters.status;
+  $('#filter-species').value = controls.filters.species;
+  $('#filter-gender').value = controls.filters.gender;
+  $('#sort-select').value = controls.sort;
+};
+
 // ── RESET FILTERS ─────────────────────────────────────────
 
 export const resetFilters = () => {
   state.characters.filters = { name: '', status: '', species: '', gender: '' };
+  state.characters.sort = 'id-asc';
   state.characters.page = 1;
   $('#search-input').value = '';
   $('#filter-status').value = '';
   $('#filter-species').value = '';
   $('#filter-gender').value = '';
+  $('#sort-select').value = 'id-asc';
+  syncCharacterControls();
   loadCharacters();
 };
 
@@ -268,6 +294,7 @@ const init = () => {
   // Apply saved preferences from localStorage
   applyTheme(getTheme());
   applyViewMode(getViewMode());
+  applySavedCharacterControls();
   updateFavCount();
 
   // Initial data load
@@ -288,12 +315,14 @@ const init = () => {
     if (!validateFilter('status', e.target.value)) return;
     state.characters.filters.status = e.target.value;
     state.characters.page = 1;
+    syncCharacterControls();
     loadCharacters();
   });
 
   $('#filter-species').addEventListener('change', (e) => {
     state.characters.filters.species = e.target.value;
     state.characters.page = 1;
+    syncCharacterControls();
     loadCharacters();
   });
 
@@ -301,12 +330,14 @@ const init = () => {
     if (!validateFilter('gender', e.target.value)) return;
     state.characters.filters.gender = e.target.value;
     state.characters.page = 1;
+    syncCharacterControls();
     loadCharacters();
   });
 
   // Sort
   $('#sort-select').addEventListener('change', (e) => {
     state.characters.sort = e.target.value;
+    syncCharacterControls();
     const sorted = sortCharacters(state.characters.results, e.target.value);
     renderCharacters(sorted, handleCardClick, handleFavToggle);
   });

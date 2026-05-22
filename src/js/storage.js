@@ -5,6 +5,7 @@ const KEYS = {
   FAVOURITES: 'ram_favourites',
   THEME: 'ram_theme',
   VIEW_MODE: 'ram_view_mode',
+  CHARACTER_CONTROLS: 'ram_character_controls',
 };
 
 // ── FAVOURITES ──────────────────────────────────────────
@@ -111,4 +112,34 @@ export const saveViewMode = (mode) => {
  */
 export const getViewMode = () => {
   return localStorage.getItem(KEYS.VIEW_MODE) || 'grid';
+};
+
+/**
+ * Save character filters and sorting preference.
+ * @param {{filters: Object, sort: string}} controls
+ */
+export const saveCharacterControls = (controls) => {
+  localStorage.setItem(KEYS.CHARACTER_CONTROLS, JSON.stringify(controls));
+};
+
+/**
+ * Get saved character filters and sorting preference.
+ * @returns {{filters: Object, sort: string}}
+ */
+export const getCharacterControls = () => {
+  const defaults = {
+    filters: { name: '', status: '', species: '', gender: '' },
+    sort: 'id-asc',
+  };
+
+  try {
+    const raw = localStorage.getItem(KEYS.CHARACTER_CONTROLS);
+    const saved = raw ? JSON.parse(raw) : {};
+    return {
+      filters: { ...defaults.filters, ...(saved.filters || {}) },
+      sort: saved.sort || defaults.sort,
+    };
+  } catch {
+    return defaults;
+  }
 };
