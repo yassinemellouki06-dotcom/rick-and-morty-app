@@ -9,10 +9,12 @@ Repository: https://github.com/yassinemellouki06-dotcom/rick-and-morty-app
 - Character browser with more than 800 API records through pagination.
 - Grid view and list/table view. The list view shows 6+ fields: ID, name, status, species, gender, origin, and location.
 - Episode browser with episode code, title, air date, and character count.
+- Episode search by title, episode code, or air date.
 - Live search by character name with debounce.
 - Filters for status, species, and gender.
 - Sorting by ID and name.
 - Reset button to clear all character filters and sorting.
+- Random character shortcut that opens a detail modal.
 - Character detail modal with image, status, origin, location, type, and episode tags.
 - Favourites saved in LocalStorage.
 - Saved user preferences: dark/light theme, grid/list view mode, filters, search term, and sorting.
@@ -28,9 +30,9 @@ Repository: https://github.com/yassinemellouki06-dotcom/rick-and-morty-app
 Endpoints used:
 
 - `GET /character` for paginated characters and filters.
-- `GET /character/:id` for a single character helper.
+- `GET /character/:id` for the random character shortcut.
 - `GET /character/:ids` for multiple character helper.
-- `GET /episode` for paginated episodes.
+- `GET /episode` for loading and searching episodes.
 
 ## Installatie
 
@@ -87,9 +89,9 @@ rick-and-morty-app/
 | Vereiste | Waar toegepast |
 |---|---|
 | Constanten | `src/js/main.js` line 24, `src/js/api.js` line 4. |
-| Template literals | `src/js/api.js` line 20, `src/js/ui.js` lines 24, 70, 228. |
+| Template literals | `src/js/api.js` line 20, `src/js/main.js` episode count text, `src/js/ui.js` lines 24, 70, 228. |
 | Iteratie over arrays | `src/js/main.js` lines 43, 87, 207; `src/js/ui.js` lines 165, 200, 324. |
-| Array methods | `filter` in `src/js/api.js` line 16, `sort` in `src/js/main.js` line 107, `map` in `src/js/ui.js` lines 223 and 260, `some`/`filter` in `src/js/storage.js` lines 32, 45, 56, 72. |
+| Array methods | `filter` in API query building and episode search, `sort` in `src/js/main.js`, `map` in `src/js/ui.js`, `some`/`filter` in `src/js/storage.js`. |
 | Arrow functions | Used throughout `src/js/main.js`, `src/js/ui.js`, `src/js/api.js`, and `src/js/storage.js`. |
 | Ternary operator | `src/js/main.js` line 148, `src/js/ui.js` lines 56-57 and 263-264. |
 | Callback functions | `src/js/main.js` lines 166-175 for debounce, and pagination callbacks on lines 77-81 and 128-131. |
@@ -101,7 +103,7 @@ rick-and-morty-app/
 
 | Vereiste | Waar toegepast |
 |---|---|
-| Fetch | `src/js/api.js` lines 22, 44, 55, 68. |
+| Fetch | `src/js/api.js` for characters, one random character, all episodes, and multi-character helpers. |
 | JSON manipuleren/weergeven | `response.json()` in `src/js/api.js` lines 34, 46, 57, 70; rendering in `src/js/ui.js`. |
 
 ### Opslag & Validatie
@@ -119,7 +121,7 @@ rick-and-morty-app/
 | CSS Grid | `src/css/layout.css` lines 107 and 112; `src/css/components.css` lines 267, 286, 342, 415, 515. |
 | Flexbox | `src/css/layout.css` header/controls; `src/css/components.css` buttons, cards, modal rows. |
 | Responsive design | `src/css/layout.css` line 230 and `src/css/components.css` lines 622 and 638. |
-| Gebruiksvriendelijke elementen | Favourite buttons, filter reset button, clear favourites button, theme toggle, grid/list toggle, pagination, skeleton loaders, and toast notifications. |
+| Gebruiksvriendelijke elementen | Favourite buttons, random character button, episode search, filter reset button, clear favourites button, theme toggle, grid/list toggle, pagination, skeleton loaders, and toast notifications. |
 
 ### Tooling & Structuur
 

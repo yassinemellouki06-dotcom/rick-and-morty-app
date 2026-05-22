@@ -12,6 +12,7 @@ This project used AI assistance during development.
 - Checked the project structure against the Advanced Web assignment.
 - Verified the Vite setup and build process.
 - Improved the character list view so it shows 6+ clear data fields.
+- Added a random character shortcut and episode search.
 - Cleaned unused imports/constants.
 - Updated README documentation with API links, installation steps, technical requirement references, screenshots, and sources.
 
