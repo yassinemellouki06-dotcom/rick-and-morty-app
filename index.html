@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rick &amp; Morty Explorer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&family=Exo+2:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/src/css/reset.css" />
+    <link rel="stylesheet" href="/src/css/variables.css" />
+    <link rel="stylesheet" href="/src/css/layout.css" />
+    <link rel="stylesheet" href="/src/css/components.css" />
+    <link rel="stylesheet" href="/src/css/animations.css" />
+  </head>
+  <body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="header-inner">
+        <div class="logo">
+          <span class="logo-portal">&#9679;</span>
+          <span class="logo-text">R&amp;M <em>Explorer</em></span>
+        </div>
+        <nav class="main-nav">
+          <button class="nav-btn active" data-view="characters">Characters</button>
+          <button class="nav-btn" data-view="episodes">Episodes</button>
+          <button class="nav-btn" data-view="favourites">
+            Favourites <span class="fav-count" id="fav-count">0</span>
+          </button>
+        </nav>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <span class="theme-icon">◐</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main class="main-content">
+
+      <!-- CONTROLS BAR -->
+      <section class="controls-bar" id="controls-bar">
+        <div class="search-wrap">
+          <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            placeholder="Search characters..."
+            aria-label="Search"
+          />
+          <span class="search-icon">⌕</span>
+        </div>
+
+        <div class="filters">
+          <select id="filter-status" class="filter-select" aria-label="Filter by status">
+            <option value="">All statuses</option>
+            <option value="alive">Alive</option>
+            <option value="dead">Dead</option>
+            <option value="unknown">Unknown</option>
+          </select>
+
+          <select id="filter-species" class="filter-select" aria-label="Filter by species">
+            <option value="">All species</option>
+            <option value="Human">Human</option>
+            <option value="Alien">Alien</option>
+            <option value="Humanoid">Humanoid</option>
+            <option value="Robot">Robot</option>
+            <option value="Animal">Animal</option>
+            <option value="Poopybutthole">Poopybutthole</option>
+            <option value="Mythological Creature">Mythological</option>
+            <option value="Unknown">Unknown</option>
+          </select>
+
+          <select id="filter-gender" class="filter-select" aria-label="Filter by gender">
+            <option value="">All genders</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Genderless">Genderless</option>
+            <option value="unknown">Unknown</option>
+          </select>
+
+          <select id="sort-select" class="filter-select" aria-label="Sort by">
+            <option value="id-asc">ID ↑</option>
+            <option value="id-desc">ID ↓</option>
+            <option value="name-asc">Name A–Z</option>
+            <option value="name-desc">Name Z–A</option>
+          </select>
+        </div>
+
+        <div class="view-toggle">
+          <button class="view-btn active" id="view-grid" aria-label="Grid view">▦</button>
+          <button class="view-btn" id="view-list" aria-label="List view">☰</button>
+        </div>
+      </section>
+
+      <!-- RESULTS INFO -->
+      <div class="results-info" id="results-info">
+        <span id="results-count"></span>
+      </div>
+
+      <!-- CHARACTERS VIEW -->
+      <section class="view active" id="view-characters">
+        <div class="card-grid" id="card-grid" role="list" aria-label="Character cards"></div>
+        <div class="skeleton-grid hidden" id="skeleton-grid"></div>
+        <div class="empty-state hidden" id="empty-state">
+          <p class="empty-icon">🛸</p>
+          <p>No characters found in this dimension.</p>
+          <button onclick="window.app.resetFilters()">Reset filters</button>
+        </div>
+        <div class="pagination" id="pagination"></div>
+      </section>
+
+      <!-- EPISODES VIEW -->
+      <section class="view hidden" id="view-episodes">
+        <div class="episode-list" id="episode-list" role="list" aria-label="Episode list"></div>
+        <div class="pagination" id="pagination-episodes"></div>
+      </section>
+
+      <!-- FAVOURITES VIEW -->
+      <section class="view hidden" id="view-favourites">
+        <div class="fav-header">
+          <h2>Your Favourites</h2>
+          <button class="btn-danger" id="clear-favs">Clear all</button>
+        </div>
+        <div class="card-grid" id="fav-grid" role="list" aria-label="Favourite characters"></div>
+        <div class="empty-state" id="fav-empty">
+          <p class="empty-icon">💚</p>
+          <p>No favourites yet. Start adding characters!</p>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- CHARACTER DETAIL MODAL -->
+    <div class="modal-overlay hidden" id="modal-overlay" role="dialog" aria-modal="true" aria-label="Character detail">
+      <div class="modal" id="modal">
+        <button class="modal-close" id="modal-close" aria-label="Close">✕</button>
+        <div class="modal-content" id="modal-content"></div>
+      </div>
+    </div>
+
+    <!-- TOAST NOTIFICATION -->
+    <div class="toast hidden" id="toast" role="alert" aria-live="polite"></div>
+
+    <!-- SCRIPTS -->
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

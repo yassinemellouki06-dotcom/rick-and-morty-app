@@ -1,0 +1,81 @@
+/* animations.css — motion & transitions */
+
+/* Card entrance */
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.char-card, .ep-card {
+  animation: card-in 0.3s ease both;
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 0.8; }
+  100% { opacity: 0.4; }
+}
+
+.skeleton-img,
+.skeleton-line {
+  animation: shimmer 1.4s ease-in-out infinite;
+}
+
+/* Modal entrance */
+@keyframes modal-in {
+  from { opacity: 0; transform: scale(0.94) translateY(12px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.modal {
+  animation: modal-in 0.25s ease both;
+}
+
+/* Toast entrance */
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(12px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+.toast:not(.hidden) {
+  animation: toast-in 0.2s ease both;
+}
+
+/* Stagger card children */
+.char-card:nth-child(1)  { animation-delay: 0.02s; }
+.char-card:nth-child(2)  { animation-delay: 0.04s; }
+.char-card:nth-child(3)  { animation-delay: 0.06s; }
+.char-card:nth-child(4)  { animation-delay: 0.08s; }
+.char-card:nth-child(5)  { animation-delay: 0.10s; }
+.char-card:nth-child(6)  { animation-delay: 0.12s; }
+.char-card:nth-child(7)  { animation-delay: 0.14s; }
+.char-card:nth-child(8)  { animation-delay: 0.16s; }
+.char-card:nth-child(9)  { animation-delay: 0.18s; }
+.char-card:nth-child(10) { animation-delay: 0.20s; }
+.char-card:nth-child(11) { animation-delay: 0.22s; }
+.char-card:nth-child(12) { animation-delay: 0.24s; }
+.char-card:nth-child(13) { animation-delay: 0.26s; }
+.char-card:nth-child(14) { animation-delay: 0.28s; }
+.char-card:nth-child(15) { animation-delay: 0.30s; }
+.char-card:nth-child(16) { animation-delay: 0.32s; }
+.char-card:nth-child(17) { animation-delay: 0.34s; }
+.char-card:nth-child(18) { animation-delay: 0.36s; }
+.char-card:nth-child(19) { animation-delay: 0.38s; }
+.char-card:nth-child(20) { animation-delay: 0.40s; }
+
+/* View switch fade */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.view:not(.hidden) {
+  animation: fade-in 0.2s ease;
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}

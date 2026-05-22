@@ -1,0 +1,64 @@
+/* variables.css — design tokens */
+
+:root {
+  /* Portal green accent */
+  --accent: #97ef5e;
+  --accent-dim: #5dba2f;
+  --accent-glow: rgba(151, 239, 94, 0.25);
+
+  /* Rick blue */
+  --blue: #79c8f7;
+  --blue-dim: #3a8ec4;
+
+  /* Status colours */
+  --status-alive: #97ef5e;
+  --status-dead: #ef5e5e;
+  --status-unknown: #aaaaaa;
+
+  /* Typography */
+  --font-display: 'Orbitron', monospace;
+  --font-mono: 'Share Tech Mono', monospace;
+  --font-body: 'Exo 2', sans-serif;
+}
+
+/* ── DARK MODE (default) ── */
+[data-theme="dark"], :root {
+  --bg-page: #0d0f14;
+  --bg-surface: #141720;
+  --bg-card: #1a1e2b;
+  --bg-card-hover: #20253a;
+  --bg-input: #0d0f14;
+
+  --text-primary: #e8ecf4;
+  --text-secondary: #8a94b0;
+  --text-muted: #4a5270;
+
+  --border: rgba(151, 239, 94, 0.15);
+  --border-strong: rgba(151, 239, 94, 0.35);
+
+  --modal-bg: rgba(0, 0, 0, 0.85);
+
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 20px var(--accent-glow);
+}
+
+/* ── LIGHT MODE ── */
+[data-theme="light"] {
+  --bg-page: #f0f2f7;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f5f7ff;
+  --bg-input: #ffffff;
+
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-muted: #9ca3af;
+
+  --border: rgba(0, 0, 0, 0.1);
+  --border-strong: rgba(0, 0, 0, 0.25);
+
+  --modal-bg: rgba(0, 0, 0, 0.5);
+
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 0 12px rgba(93, 186, 47, 0.2);
+}
