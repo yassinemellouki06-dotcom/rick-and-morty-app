@@ -664,6 +664,13 @@
   color: white;
 }
 
+.fav-header {
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--bg-surface);
+}
+
 /* ── LOGO PORTAL ANIMATION ── */
 .logo-portal {
   display: inline-block;
