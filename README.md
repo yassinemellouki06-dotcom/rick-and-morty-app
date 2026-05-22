@@ -7,6 +7,7 @@ Repository: https://github.com/yassinemellouki06-dotcom/rick-and-morty-app
 ## Functionaliteiten
 
 - Character browser with more than 800 API records through pagination.
+- Multiverse scan panel with live stats for total characters, favourites, active filters, and page.
 - Grid view and list/table view. The list view shows 6+ fields: ID, name, status, species, gender, origin, and location.
 - Episode browser with episode code, title, air date, and character count.
 - Episode search by title, episode code, or air date.
@@ -121,7 +122,7 @@ rick-and-morty-app/
 | CSS Grid | `src/css/layout.css` lines 107 and 112; `src/css/components.css` lines 267, 286, 342, 415, 515. |
 | Flexbox | `src/css/layout.css` header/controls; `src/css/components.css` buttons, cards, modal rows. |
 | Responsive design | `src/css/layout.css` line 230 and `src/css/components.css` lines 622 and 638. |
-| Gebruiksvriendelijke elementen | Favourite buttons, random character button, episode search, filter reset button, clear favourites button, theme toggle, grid/list toggle, pagination, skeleton loaders, and toast notifications. |
+| Gebruiksvriendelijke elementen | Stats panel, richer cards, favourite buttons, random character button, episode search, filter reset button, clear favourites button, theme toggle, grid/list toggle, pagination, skeleton loaders, and toast notifications. |
 
 ### Tooling & Structuur
 
