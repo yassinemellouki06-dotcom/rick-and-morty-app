@@ -12,9 +12,10 @@ Repository: https://github.com/yassinemellouki06-dotcom/rick-and-morty-app
 - Live search by character name with debounce.
 - Filters for status, species, and gender.
 - Sorting by ID and name.
+- Reset button to clear all character filters and sorting.
 - Character detail modal with image, status, origin, location, type, and episode tags.
 - Favourites saved in LocalStorage.
-- Saved user preferences: dark/light theme and grid/list view mode.
+- Saved user preferences: dark/light theme, grid/list view mode, filters, search term, and sorting.
 - Responsive design for mobile, tablet, and desktop.
 
 ## Gebruikte API
@@ -79,7 +80,7 @@ rick-and-morty-app/
 |---|---|
 | Elementen selecteren | `src/js/ui.js` lines 8-9: `$` and `$$` helpers use `querySelector` and `querySelectorAll`. |
 | Elementen manipuleren | `src/js/ui.js` lines 20-24, 70, 155-167: `innerHTML`, `classList`, and `appendChild`. |
-| Events koppelen | `src/js/main.js` lines 279-333 and `src/js/ui.js` lines 123-130. |
+| Events koppelen | `src/js/main.js` lines 306-360 and `src/js/ui.js` lines 123-130. |
 
 ### Modern JavaScript
 
@@ -108,7 +109,7 @@ rick-and-morty-app/
 | Vereiste | Waar toegepast |
 |---|---|
 | Formulier/input-validatie | `validateFilter` in `src/js/main.js` lines 190-199. |
-| LocalStorage | `src/js/storage.js` lines 18-19, 34, 46, 79, 89, 97, 105, 113. |
+| LocalStorage | Favourites, theme, view mode, filters/search/sort in `src/js/storage.js` lines 18-19, 34, 46, 79, 89, 97, 105, 113, 121-139. |
 
 ### Styling & Layout
 
@@ -118,7 +119,7 @@ rick-and-morty-app/
 | CSS Grid | `src/css/layout.css` lines 107 and 112; `src/css/components.css` lines 267, 286, 342, 415, 515. |
 | Flexbox | `src/css/layout.css` header/controls; `src/css/components.css` buttons, cards, modal rows. |
 | Responsive design | `src/css/layout.css` line 230 and `src/css/components.css` lines 622 and 638. |
-| Gebruiksvriendelijke elementen | Favourite buttons, clear button, theme toggle, grid/list toggle, pagination, skeleton loaders, and toast notifications. |
+| Gebruiksvriendelijke elementen | Favourite buttons, filter reset button, clear favourites button, theme toggle, grid/list toggle, pagination, skeleton loaders, and toast notifications. |
 
 ### Tooling & Structuur
 
