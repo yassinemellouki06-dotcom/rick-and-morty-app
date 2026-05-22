@@ -257,17 +257,23 @@
   color: var(--text-muted);
 }
 
+.char-card__table-fields {
+  display: none;
+}
+
 /* ── LIST MODE CARD ── */
 .card-grid.list-mode .char-card {
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
   align-items: center;
+  min-height: 82px;
+  overflow: visible;
 }
 
 .card-grid.list-mode .char-card__img-wrap {
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 82px;
   aspect-ratio: unset;
-  flex-shrink: 0;
 }
 
 .card-grid.list-mode .char-card__status {
@@ -275,16 +281,55 @@
 }
 
 .card-grid.list-mode .char-card__body {
-  flex-direction: row;
+  display: grid;
+  grid-column: 2;
+  grid-template-columns: 1.35fr repeat(6, minmax(96px, 1fr));
   align-items: center;
-  gap: 1rem;
-  padding: 0 1rem;
-  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 0.85rem 1rem;
+  min-width: 0;
+}
+
+.card-grid.list-mode .char-card__name {
+  white-space: normal;
+}
+
+.card-grid.list-mode .char-card__meta {
+  display: none;
+}
+
+.card-grid.list-mode .char-card__table-fields {
+  display: contents;
+}
+
+.card-grid.list-mode .char-card__table-fields div {
+  min-width: 0;
+}
+
+.card-grid.list-mode .char-card__table-fields dt {
+  margin-bottom: 0.25rem;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.card-grid.list-mode .char-card__table-fields dd {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .card-grid.list-mode .char-card__id {
-  position: static;
-  margin-left: auto;
+  display: none;
 }
 
 /* ── EPISODE CARD ── */
@@ -572,4 +617,41 @@
 @keyframes portal-pulse {
   0%, 100% { transform: scale(1); opacity: 1; }
   50% { transform: scale(1.15); opacity: 0.75; }
+}
+
+@media (max-width: 1050px) {
+  .card-grid.list-mode .char-card {
+    grid-template-columns: 72px minmax(0, 1fr);
+  }
+
+  .card-grid.list-mode .char-card__body {
+    grid-column: 2;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card-grid.list-mode .char-card__name {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .card-grid.list-mode .char-card {
+    grid-template-columns: 64px minmax(0, 1fr);
+    min-height: 74px;
+  }
+
+  .card-grid.list-mode .char-card__img-wrap {
+    width: 64px;
+    height: 74px;
+  }
+
+  .card-grid.list-mode .char-card__body {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    padding: 0.65rem 0.75rem;
+  }
+
+  .card-grid.list-mode .char-card__table-fields div:nth-child(n + 4) {
+    display: none;
+  }
 }

@@ -5,7 +5,7 @@ import { fetchCharacters, fetchEpisodes } from './api.js';
 import {
   saveTheme, getTheme,
   saveViewMode, getViewMode,
-  getFavourites, clearFavourites,
+  clearFavourites,
 } from './storage.js';
 import {
   $, $$,

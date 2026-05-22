@@ -5,7 +5,6 @@ const KEYS = {
   FAVOURITES: 'ram_favourites',
   THEME: 'ram_theme',
   VIEW_MODE: 'ram_view_mode',
-  LAST_PAGE: 'ram_last_page',
 };
 
 // ── FAVOURITES ──────────────────────────────────────────

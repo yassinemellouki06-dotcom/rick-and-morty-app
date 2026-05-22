@@ -1,8 +1,7 @@
 // ui.js — DOM manipulation & component rendering
 // Covers: element selection, manipulation, event binding, template literals
 
-import { isFavourite, toggleFavourite, getFavourites, clearFavourites } from './storage.js';
-import { fetchCharacterById } from './api.js';
+import { isFavourite, toggleFavourite, getFavourites } from './storage.js';
 
 // ── DOM ELEMENT REFERENCES ──────────────────────────────
 // Selecting elements from the DOM
@@ -51,7 +50,7 @@ export const hideSkeletons = () => {
  * @returns {HTMLElement}
  */
 export const createCharacterCard = (character, onCardClick, onFavToggle) => {
-  const { id, name, status, species, gender, origin, image } = character;
+  const { id, name, status, species, gender, origin, location, image } = character;
 
   // Ternary operator for status class
   const statusClass = status.toLowerCase() === 'alive' ? 'alive'
@@ -90,6 +89,32 @@ export const createCharacterCard = (character, onCardClick, onFavToggle) => {
       <p class="char-card__name" title="${name}">${name}</p>
       <p class="char-card__meta">${species} · ${gender}</p>
       <p class="char-card__meta">${origin.name !== 'unknown' ? origin.name : '—'}</p>
+      <dl class="char-card__table-fields" aria-label="Character table details">
+        <div>
+          <dt>ID</dt>
+          <dd>#${id}</dd>
+        </div>
+        <div>
+          <dt>Status</dt>
+          <dd><span class="status-dot ${statusClass}" aria-hidden="true"></span>${status}</dd>
+        </div>
+        <div>
+          <dt>Species</dt>
+          <dd>${species}</dd>
+        </div>
+        <div>
+          <dt>Gender</dt>
+          <dd>${gender}</dd>
+        </div>
+        <div>
+          <dt>Origin</dt>
+          <dd>${origin.name !== 'unknown' ? origin.name : 'Unknown'}</dd>
+        </div>
+        <div>
+          <dt>Location</dt>
+          <dd>${location.name !== 'unknown' ? location.name : 'Unknown'}</dd>
+        </div>
+      </dl>
     </div>
     <span class="char-card__id">#${id}</span>
   `;
