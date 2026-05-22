@@ -125,6 +125,11 @@
   background: var(--accent-glow);
 }
 
+.filter-reset:disabled {
+  opacity: 0.45;
+  cursor: wait;
+}
+
 /* ── VIEW TOGGLE BUTTONS ── */
 .view-btn {
   width: 42px;

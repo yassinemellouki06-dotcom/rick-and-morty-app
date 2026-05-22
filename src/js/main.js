@@ -1,7 +1,7 @@
 // main.js — Application entry point
 // Integrates all JS concepts required for the assignment
 
-import { fetchCharacters, fetchEpisodes } from './api.js';
+import { fetchCharacters, fetchCharacterById, fetchEpisodes } from './api.js';
 import {
   saveTheme, getTheme,
   saveViewMode, getViewMode,
@@ -153,6 +153,23 @@ const handleFavToggle = (character, nowFav) => {
   // If on favourites view, re-render it
   if (state.currentView === 'favourites') {
     renderFavourites(handleCardClick, handleFavToggle);
+  }
+};
+
+const handleRandomCharacter = async () => {
+  const btn = $('#random-character');
+  const maxId = state.characters.info?.count || 826;
+  const randomId = Math.floor(Math.random() * maxId) + 1;
+
+  btn.disabled = true;
+  try {
+    const character = await fetchCharacterById(randomId);
+    openModal(character, handleFavToggle);
+  } catch (err) {
+    console.error('Failed to load random character:', err);
+    showToast('Could not open a random character.');
+  } finally {
+    btn.disabled = false;
   }
 };
 
@@ -344,6 +361,9 @@ const init = () => {
 
   // Reset filters
   $('#reset-filters').addEventListener('click', resetFilters);
+
+  // Random character shortcut
+  $('#random-character').addEventListener('click', handleRandomCharacter);
 
   // View mode toggle
   $('#view-grid').addEventListener('click', () => applyViewMode('grid'));
