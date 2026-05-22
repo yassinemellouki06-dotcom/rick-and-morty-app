@@ -125,8 +125,20 @@
 
       <!-- EPISODES VIEW -->
       <section class="view hidden" id="view-episodes">
+        <div class="episode-toolbar">
+          <div class="search-wrap">
+            <input
+              type="text"
+              id="episode-search"
+              class="search-input"
+              placeholder="Search episodes..."
+              aria-label="Search episodes"
+            />
+            <span class="search-icon">⌕</span>
+          </div>
+          <span class="results-info" id="episode-count"></span>
+        </div>
         <div class="episode-list" id="episode-list" role="list" aria-label="Episode list"></div>
-        <div class="pagination" id="pagination-episodes"></div>
       </section>
 
       <!-- FAVOURITES VIEW -->

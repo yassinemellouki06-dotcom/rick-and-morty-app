@@ -127,6 +127,13 @@ body {
   gap: 0.5rem;
 }
 
+.episode-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
 /* ── FAVOURITES ── */
 .fav-header {
   display: flex;
@@ -247,6 +254,11 @@ body {
   }
 
   .filters {
+    flex-direction: column;
+  }
+
+  .episode-toolbar {
+    align-items: stretch;
     flex-direction: column;
   }
 

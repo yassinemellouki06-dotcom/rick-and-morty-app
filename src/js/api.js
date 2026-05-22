@@ -58,6 +58,27 @@ export const fetchEpisodes = async (page = 1) => {
 };
 
 /**
+ * Fetch all episodes across API pages.
+ * @returns {Promise<{info, results}>}
+ */
+export const fetchAllEpisodes = async () => {
+  const firstPage = await fetchEpisodes(1);
+  const remainingPages = Array.from(
+    { length: firstPage.info.pages - 1 },
+    (_, index) => index + 2
+  );
+  const pages = await Promise.all(remainingPages.map((page) => fetchEpisodes(page)));
+
+  return {
+    info: firstPage.info,
+    results: [
+      ...firstPage.results,
+      ...pages.flatMap((page) => page.results),
+    ],
+  };
+};
+
+/**
  * Fetch multiple characters by array of IDs (for modal episode cast).
  * Rick & Morty API supports comma-separated IDs.
  * @param {number[]} ids

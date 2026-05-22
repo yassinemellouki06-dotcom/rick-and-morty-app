@@ -1,7 +1,7 @@
 // main.js — Application entry point
 // Integrates all JS concepts required for the assignment
 
-import { fetchCharacters, fetchCharacterById, fetchEpisodes } from './api.js';
+import { fetchCharacters, fetchCharacterById, fetchAllEpisodes } from './api.js';
 import {
   saveTheme, getTheme,
   saveViewMode, getViewMode,
@@ -32,8 +32,9 @@ const state = {
     sort: 'id-asc',
   },
   episodes: {
-    page: 1,
     info: null,
+    results: [],
+    query: '',
   },
 };
 
@@ -122,18 +123,29 @@ const sortCharacters = (chars, sortKey) => {
 
 const loadEpisodes = async () => {
   try {
-    const data = await fetchEpisodes(state.episodes.page);
+    const data = await fetchAllEpisodes();
     state.episodes.info = data.info;
+    state.episodes.results = data.results;
 
-    renderEpisodes(data.results);
-    renderPagination(data.info, state.episodes.page, (p) => {
-      state.episodes.page = p;
-      loadEpisodes();
-    }, 'pagination-episodes');
+    renderFilteredEpisodes();
   } catch (err) {
     console.error('Failed to load episodes:', err);
     showToast('Error loading episodes.');
   }
+};
+
+const renderFilteredEpisodes = () => {
+  const query = state.episodes.query.trim().toLowerCase();
+  const filtered = query
+    ? state.episodes.results.filter((episode) => (
+        episode.name.toLowerCase().includes(query)
+        || episode.episode.toLowerCase().includes(query)
+        || episode.air_date.toLowerCase().includes(query)
+      ))
+    : state.episodes.results;
+
+  renderEpisodes(filtered);
+  $('#episode-count').textContent = `${filtered.length} episode${filtered.length !== 1 ? 's' : ''}`;
 };
 
 // ── EVENT HANDLERS ───────────────────────────────────────
@@ -196,6 +208,11 @@ const handleSearch = debounce((value) => {
   syncCharacterControls();
   loadCharacters();
 }, 400);
+
+const handleEpisodeSearch = debounce((value) => {
+  state.episodes.query = value;
+  renderFilteredEpisodes();
+}, 250);
 
 // ── FILTER FORM VALIDATION ───────────────────────────────
 
@@ -326,6 +343,7 @@ const init = () => {
 
   // Search
   $('#search-input').addEventListener('input', (e) => handleSearch(e.target.value));
+  $('#episode-search').addEventListener('input', (e) => handleEpisodeSearch(e.target.value));
 
   // Filters — using event delegation pattern
   $('#filter-status').addEventListener('change', (e) => {
