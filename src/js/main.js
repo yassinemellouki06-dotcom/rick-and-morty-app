@@ -188,6 +188,28 @@ const handleRandomCharacter = async () => {
   }
 };
 
+const applyPortalPreset = (preset) => {
+  const presets = {
+    'alive-humans': { status: 'alive', species: 'Human', gender: '' },
+    aliens: { status: '', species: 'Alien', gender: '' },
+    dead: { status: 'dead', species: '', gender: '' },
+    unknown: { status: 'unknown', species: '', gender: '' },
+  };
+  const selected = presets[preset];
+  if (!selected) return;
+
+  state.characters.filters = { name: '', ...selected };
+  state.characters.page = 1;
+
+  $('#search-input').value = '';
+  $('#filter-status').value = selected.status;
+  $('#filter-species').value = selected.species;
+  $('#filter-gender').value = selected.gender;
+
+  syncCharacterControls();
+  loadCharacters();
+};
+
 // ── SEARCH (debounced) ───────────────────────────────────
 
 /**
@@ -397,6 +419,11 @@ const init = () => {
 
   // Random character shortcut
   $('#random-character').addEventListener('click', handleRandomCharacter);
+
+  // Portal preset filters
+  $$('.preset-chip').forEach((btn) => {
+    btn.addEventListener('click', () => applyPortalPreset(btn.dataset.preset));
+  });
 
   // View mode toggle
   $('#view-grid').addEventListener('click', () => applyViewMode('grid'));

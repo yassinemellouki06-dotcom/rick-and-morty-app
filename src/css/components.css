@@ -130,6 +130,25 @@
   cursor: wait;
 }
 
+.preset-chip {
+  min-height: 34px;
+  padding: 0 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  background: rgba(151, 239, 94, 0.08);
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  transition: all 0.2s;
+}
+
+.preset-chip:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-1px);
+}
+
 /* ── VIEW TOGGLE BUTTONS ── */
 .view-btn {
   width: 42px;
