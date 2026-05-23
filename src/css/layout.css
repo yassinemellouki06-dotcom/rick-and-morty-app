@@ -219,6 +219,7 @@ body::before {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
   margin-bottom: 1.5rem;
 }
 
@@ -226,6 +227,12 @@ body::before {
   font-family: var(--font-display);
   font-size: 1.2rem;
   color: var(--accent);
+}
+
+.fav-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
 }
 
 /* ── PAGINATION ── */
@@ -356,6 +363,11 @@ body::before {
   }
 
   .episode-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .fav-header {
     align-items: stretch;
     flex-direction: column;
   }

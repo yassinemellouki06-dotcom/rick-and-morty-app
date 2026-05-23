@@ -210,6 +210,23 @@ const applyPortalPreset = (preset) => {
   loadCharacters();
 };
 
+const exportFavourites = () => {
+  const favs = getFavourites();
+  if (favs.length === 0) {
+    showToast('No favourites to export yet.');
+    return;
+  }
+
+  const file = new Blob([JSON.stringify(favs, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(file);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'rick-and-morty-favourites.json';
+  link.click();
+  URL.revokeObjectURL(url);
+  showToast('Favourites export ready.');
+};
+
 // ── SEARCH (debounced) ───────────────────────────────────
 
 /**
@@ -444,6 +461,8 @@ const init = () => {
   });
 
   // Clear favourites
+  $('#export-favs').addEventListener('click', exportFavourites);
+
   $('#clear-favs').addEventListener('click', () => {
     if (confirm('Clear all favourites?')) {
       clearFavourites();

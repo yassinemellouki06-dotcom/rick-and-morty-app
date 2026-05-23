@@ -176,7 +176,10 @@
       <section class="view hidden" id="view-favourites">
         <div class="fav-header">
           <h2>Your Favourites</h2>
-          <button class="btn-danger" id="clear-favs">Clear all</button>
+          <div class="fav-actions">
+            <button class="btn-secondary" id="export-favs" type="button">Export JSON</button>
+            <button class="btn-danger" id="clear-favs" type="button">Clear all</button>
+          </div>
         </div>
         <div class="card-grid" id="fav-grid" role="list" aria-label="Favourite characters"></div>
         <div class="empty-state" id="fav-empty">
