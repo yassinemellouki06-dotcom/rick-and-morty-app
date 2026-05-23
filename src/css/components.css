@@ -708,16 +708,21 @@
 /* ── LOGO PORTAL ANIMATION ── */
 .logo-portal {
   display: inline-block;
-  color: var(--accent);
-  font-size: 1.4rem;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, var(--bg-page) 0 28%, transparent 29%),
+    conic-gradient(from 25deg, var(--accent), var(--blue), var(--accent-dim), var(--accent));
+  box-shadow: 0 0 12px var(--accent), inset 0 0 8px rgba(255, 255, 255, 0.25);
+  font-size: 0;
   line-height: 1;
-  filter: drop-shadow(0 0 6px var(--accent));
   animation: portal-pulse 3s ease-in-out infinite;
 }
 
 @keyframes portal-pulse {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.15); opacity: 0.75; }
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 1; }
+  50% { transform: scale(1.12) rotate(12deg); opacity: 0.82; }
 }
 
 @media (max-width: 1050px) {
