@@ -13,11 +13,13 @@ Repository: https://github.com/yassinemellouki06-dotcom/rick-and-morty-app
 - Episode search by title, episode code, or air date.
 - Live search by character name with debounce.
 - Filters for status, species, and gender.
+- Portal preset chips for quick Rick & Morty style filters: Alive Humans, Aliens, Dead Zone, and Unknowns.
 - Sorting by ID and name.
 - Reset button to clear all character filters and sorting.
 - Random character shortcut that opens a detail modal.
 - Character detail modal with image, status, origin, location, type, and episode tags.
 - Favourites saved in LocalStorage.
+- Favourites can be exported as a JSON file.
 - Saved user preferences: dark/light theme, grid/list view mode, filters, search term, and sorting.
 - Responsive design for mobile, tablet, and desktop.
 
@@ -122,7 +124,7 @@ rick-and-morty-app/
 | CSS Grid | `src/css/layout.css` lines 107 and 112; `src/css/components.css` lines 267, 286, 342, 415, 515. |
 | Flexbox | `src/css/layout.css` header/controls; `src/css/components.css` buttons, cards, modal rows. |
 | Responsive design | `src/css/layout.css` line 230 and `src/css/components.css` lines 622 and 638. |
-| Gebruiksvriendelijke elementen | Stats panel, richer cards, favourite buttons, random character button, episode search, filter reset button, clear favourites button, theme toggle, grid/list toggle, pagination, skeleton loaders, and toast notifications. |
+| Gebruiksvriendelijke elementen | Portal presets, stats panel, richer cards, favourite/export buttons, random character button, episode search, filter reset button, clear favourites button, theme toggle, grid/list toggle, pagination, skeleton loaders, and toast notifications. |
 
 ### Tooling & Structuur
 
